@@ -25,7 +25,9 @@ class ProjectController extends Controller
     }
 
     public function showSubmit() {
-        return view('project.create');
+        $projects = Project::all();
+
+        return view('project.create', ['projects' => $projects]);
     }
 
     public function submit(Request $request) {
