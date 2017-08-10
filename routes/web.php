@@ -23,3 +23,5 @@ Route::get('/project', 'ProjectController@index');
 
 Route::get('/project/create', 'ProjectController@create');
 Route::post('/project/create', 'ProjectController@store');
+Route::post('/issue/create', 'IssueController@store');
+Route::get('/issue/create', 'IssueController@create');

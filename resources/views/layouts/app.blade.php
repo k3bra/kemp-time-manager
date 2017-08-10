@@ -48,6 +48,8 @@
                         @else
                             <li><a href="{{ url('/project') }}">See Projects</a></li>
                             <li><a href="{{ url('/project/create') }}">Create Project</a></li>
+                            <li><a href="{{ url('/issue') }}">See Issue</a></li>
+                            <li><a href="{{ url('/issue/create') }}">Create issue</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
