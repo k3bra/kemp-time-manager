@@ -21,16 +21,17 @@ class ProjectController extends Controller
 
     public function index()
     {
-        return view('project.index');
-    }
-
-    public function showSubmit() {
         $projects = Project::all();
 
-        return view('project.create', ['projects' => $projects]);
+        return view('project.index', ['projects' => $projects]);
     }
 
-    public function submit(Request $request) {
+    public function create() {
+
+        return view('project.create');
+    }
+
+    public function store(Request $request) {
 
         $request->input('name');
 
