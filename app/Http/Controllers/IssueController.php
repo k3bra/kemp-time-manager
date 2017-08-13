@@ -8,6 +8,7 @@
 namespace App\Http\Controllers;
 
 use App\Issue;
+use App\IssueStatus;
 use App\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,7 +36,7 @@ class IssueController extends Controller
 
         $projects = Project::all();
 
-        return view('issue.create', ['projects' => $projects]);
+        return view('issue.create', ['projects' => $projects, 'issuesStatus' => IssueStatus::all()]);
     }
 
     public function store(Request $request) {

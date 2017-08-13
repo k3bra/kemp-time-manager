@@ -15,11 +15,14 @@
                     <tbody>
                     @if (count($projects))
                         @foreach($projects as $project)
-                            <tr>
-                                <td>{{$project->id}}</td>
+                                <tr>
+                                <td>
+                                    <a href="{{ url('/project/' . $project->id ) }}"> {{$project->id}} </a>
+                                </td>
                                 <td>{{$project->name}}</td>
                                 <td>{{$project->user->name}}</td>
                             </tr>
+                            </a>
                         @endforeach
                     @endif
                     </tbody>

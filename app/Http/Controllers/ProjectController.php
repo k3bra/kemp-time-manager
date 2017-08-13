@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 
+use App\Issue;
+use App\IssueStatus;
 use App\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,6 +26,13 @@ class ProjectController extends Controller
         $projects = Project::all();
 
         return view('project.index', ['projects' => $projects]);
+    }
+
+    public function show($projectId)
+    {
+        $issues = Issue::all()->where('project_id', '=', $projectId );
+
+        return view('issue.index', ['issues' => $issues]);
     }
 
     public function create() {

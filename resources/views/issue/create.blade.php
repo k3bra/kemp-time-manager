@@ -40,7 +40,9 @@
                     <div class="form-group">
                         <label for="status">Status</label>
                         <select class="form-control" name="status" id="">
-                            <option value="1">Open</option>
+                            @foreach($issuesStatus as $status)
+                                <option value="{{ $status->id }}">{{ $status->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group">

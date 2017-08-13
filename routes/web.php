@@ -23,6 +23,8 @@ Route::get('/project', 'ProjectController@index');
 
 Route::get('/project/create', 'ProjectController@create');
 Route::post('/project/create', 'ProjectController@store');
+Route::get('/project/{id}', 'ProjectController@show');
+
 Route::post('/issue/create', 'IssueController@store');
 Route::get('/issue/create', 'IssueController@create');
 Route::get('/issue', 'IssueController@index');

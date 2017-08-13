@@ -12,6 +12,7 @@
                         <th>Description</th>
                         <th>Created by</th>
                         <th>Assigned to</th>
+                        <th>Status</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -23,6 +24,7 @@
                                 <td>{{$issue->description}}</td>
                                 <td>{{$issue->createdBy->name}}</td>
                                 <td>{{$issue->assignedTo->name}}</td>
+                                <td>{{$issue->statusDesc->name}}</td>
                             </tr>
                         @endforeach
                     @endif

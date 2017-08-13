@@ -20,4 +20,8 @@ class Issue extends Model
     public function assignedTo() {
         return $this->belongsTo('App\User', 'assigned_to');
     }
+
+    public function statusDesc() {
+        return $this->belongsTo(IssueStatus::class, 'status');
+    }
 }
