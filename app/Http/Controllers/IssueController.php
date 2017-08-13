@@ -26,9 +26,9 @@ class IssueController extends Controller
 
     public function index()
     {
-        $projects = Project::all();
+        $issues = Issue::all();
 
-        return view('issue.index', ['projects' => $projects]);
+        return view('issue.index', ['issues' => $issues]);
     }
 
     public function create() {
