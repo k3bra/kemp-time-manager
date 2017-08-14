@@ -29,7 +29,7 @@ class IssueController extends Controller
     {
         $issues = Issue::all();
 
-        return view('issue.index', ['issues' => $issues]);
+        return view('issue.index', ['issues' => $issues, 'issuesStatus' => IssueStatus::all()]);
     }
 
     public function create() {

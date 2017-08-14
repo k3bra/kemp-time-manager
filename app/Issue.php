@@ -24,4 +24,8 @@ class Issue extends Model
     public function statusDesc() {
         return $this->belongsTo(IssueStatus::class, 'status');
     }
+
+    public function project() {
+        return $this->belongsTo(Project::class, 'project_id');
+    }
 }
