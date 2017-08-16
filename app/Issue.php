@@ -8,6 +8,7 @@ class Issue extends Model
 {
 
     protected $table = 'issues';
+
     public $timestamps = true;
 
     public $guarded = [];

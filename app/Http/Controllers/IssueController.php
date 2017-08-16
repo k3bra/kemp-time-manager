@@ -25,6 +25,13 @@ class IssueController extends Controller
         $this->middleware('auth');
     }
 
+
+    public function showAllIssues() {
+
+        return Issue::with(['createdBy', 'assignedTo', 'project', 'statusDesc'])->get();
+
+    }
+
     public function index()
     {
         $issues = Issue::all();

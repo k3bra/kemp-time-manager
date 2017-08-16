@@ -122,3 +122,18 @@ body {
 .table-filter .media .summary {
 	font-size: 14px;
 }
+
+.open {
+    color:#2ab27b
+}
+.on-hold {
+    color:#c5b143
+}
+
+.in-progress {
+    color:#7da8c3
+}
+
+.closed {
+    color:#aa4a24
+}
