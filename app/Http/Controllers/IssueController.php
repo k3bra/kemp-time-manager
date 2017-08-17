@@ -5,6 +5,7 @@
  * Date: 10/08/2017
  * Time: 09:24
  */
+
 namespace App\Http\Controllers;
 
 use App\Issue;
@@ -26,10 +27,18 @@ class IssueController extends Controller
     }
 
 
-    public function showAllIssues() {
+    public function showAllIssues()
+    {
 
         return Issue::with(['createdBy', 'assignedTo', 'project', 'statusDesc'])->get();
 
+    }
+
+    public function show($id)
+    {
+
+        $issue = Issue::with(['createdBy', 'assignedTo', 'project', 'statusDesc'])->where('id', '=', $id)->first();
+        return view('issue.show', ['issue' => $issue]);
     }
 
     public function index()
@@ -39,14 +48,22 @@ class IssueController extends Controller
         return view('issue.index', ['issues' => $issues, 'issuesStatus' => IssueStatus::all()]);
     }
 
-    public function create() {
+    public function create()
+    {
 
         $projects = Project::all();
 
         return view('issue.create', ['projects' => $projects, 'issuesStatus' => IssueStatus::all()]);
     }
 
-    public function store(Request $request) {
+    public function showAllStatus()
+    {
+
+        return IssueStatus::all();
+    }
+
+    public function store(Request $request)
+    {
 
         $request->input('name');
 

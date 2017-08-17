@@ -30,17 +30,19 @@ class ProjectController extends Controller
 
     public function show($projectId)
     {
-        $issues = Issue::all()->where('project_id', '=', $projectId );
+        $issues = Issue::all()->where('project_id', '=', $projectId);
 
         return view('issue.index', ['issues' => $issues]);
     }
 
-    public function create() {
+    public function create()
+    {
 
         return view('project.create');
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
 
         $request->input('name');
 

@@ -8,6 +8,7 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+var VueRouter = require('vue-router');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -16,6 +17,8 @@ window.Vue = require('vue');
  */
 
 Vue.component('example', require('./components/Example.vue'));
+
+Vue.use(VueRouter);
 
 const app = new Vue({
     el: '#app'
