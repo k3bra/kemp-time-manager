@@ -12,15 +12,16 @@
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
 
-
                         <div class="panel">
                             <div class="panel-heading">
-                                <h1 > {{$issue->name}} <small>({{$issue->project->name}})</small> </h1>
+                                <h1> {{$issue->name}}
+                                    <small>({{$issue->project->name}})</small>
+                                </h1>
                             </div>
                             <div class="panel-body">
                                 <div class="row">
                                     <div class=" col-md-12">
-                                        <table class="table table-user-information">
+                                        <table class="table ">
                                             <tbody>
                                             <tr>
                                                 <td>Created By:</td>
@@ -28,7 +29,7 @@
                                             </tr>
                                             <tr>
                                                 <td>Assigned to:</td>
-                                                <td><a href="">{{$issue->assignedTo->name}}</a> </td>
+                                                <td><a href="">{{$issue->assignedTo->name}}</a></td>
                                             </tr>
                                             <tr>
                                                 <td>Created at:</td>
@@ -51,7 +52,6 @@
                                             </td>
 
                                             </tr>
-
                                             </tbody>
                                         </table>
                                     </div>
@@ -59,6 +59,47 @@
                             </div>
 
                         </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        @foreach($issue->comments as $comment)
+                            @include('issue.comment')
+                        @endforeach
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+
+
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
+
+                        @if(auth()->check())
+                            <form method="POST" action="{{ route('issue_comment') }}">
+                                {{csrf_field()}}
+                                <input name="id" type="hidden" value="{{$issue->id}}">
+                                <div class="form-group">
+                                    <textarea name="body" class="form-control"
+                                              placeholder="Do you want to say something?" id="body" rows="5"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-default">Post</button>
+
+                            </form>
+                        @else
+                            <p class="text-center">You need to <a href="/login">login</a> to participate </p>
+                        @endif
+
                     </div>
                 </div>
             </div>
@@ -76,7 +117,8 @@
                 issues: {},
                 issuesStatus: {},
                 url: '/issue/show/'
-            }});
+            }
+        });
     </script>
 
 @endsection

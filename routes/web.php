@@ -32,4 +32,5 @@ Route::get('/issue/create', 'IssueController@create');
 Route::get('/issue', 'IssueController@index');
 
 Route::get('/issue/show/{id}', 'IssueController@show');
+Route::post('/issue/comment', 'IssueController@comment')->name('issue_comment');
 

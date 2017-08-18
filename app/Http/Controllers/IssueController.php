@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 use App\Issue;
+use App\IssueComment;
 use App\IssueStatus;
 use App\Project;
 use Illuminate\Http\Request;
@@ -84,6 +85,25 @@ class IssueController extends Controller
             'project_id' => $request->input('project'),
             'status' => $request->input('status'),
             'assigned_to' => Auth::user()->id,
+        ]);
+
+        return back();
+    }
+
+
+    public function comment(Request $request)
+    {
+
+        $this->validate($request, [
+                'body' => 'required',
+                'id' => 'required'
+            ]
+        );
+
+        IssueComment::create([
+            'body' => $request->input('body'),
+            'issue_id' => $request->input('id'),
+            'user_id' => Auth::user()->id,
         ]);
 
         return back();
