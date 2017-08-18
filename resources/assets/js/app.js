@@ -17,9 +17,13 @@ var VueRouter = require('vue-router');
  */
 
 Vue.component('example', require('./components/Example.vue'));
+Vue.component('add-time', require('./components/AddTime.vue'));
 
 Vue.use(VueRouter);
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    data: {
+        showModal: false
+    }
 });

@@ -7,6 +7,7 @@
 @section('content')
 
     <div id="issue" class="container">
+        <add-time v-show="showModal" @close="showModal = false"> </add-time>
         <div class="row">
             <div class="container">
                 <div class="row">
@@ -18,6 +19,7 @@
                                     <small>({{$issue->project->name}})</small>
                                 </h1>
                             </div>
+
                             <div class="panel-body">
                                 <div class="row">
                                     <div class=" col-md-12">
@@ -42,6 +44,9 @@
                                             <tr>
                                                 <td>Estimated time:</td>
                                                 <td>{{$issue->estimated_time}} hours</td>
+                                            </tr>                                            <tr>
+                                                <td>Time spent: </td>
+                                                <td>12312 hours <button type="submit" @click="showModal = true" class="btn btn-warning">Add Time</button></td>
                                             </tr>
                                             <tr>
 
@@ -111,14 +116,7 @@
 @section('javascript')
 
     <script type="text/javascript">
-        new Vue({
-            el: '#issue',
-            data: {
-                issues: {},
-                issuesStatus: {},
-                url: '/issue/show/'
-            }
-        });
+
     </script>
 
 @endsection
