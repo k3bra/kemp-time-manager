@@ -18,8 +18,8 @@ var VueRouter = require('vue-router');
 
 Vue.component('example', require('./components/Example.vue'));
 Vue.component('add-time', require('./components/AddTime.vue'));
+Vue.component('issues-list', require('./components/IssuesList.vue'));
 
-Vue.use(VueRouter);
 
 const app = new Vue({
     el: '#app',

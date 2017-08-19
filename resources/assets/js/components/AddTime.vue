@@ -9,20 +9,68 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="date">Date</label>
-                        <input class="form-control" type="date">
+                        <label for="date">Date:</label>
+                        <input class="form-control" v-model="date" type="date">
+                        <span class="alert-danger" v-for="error in errors.date">{{error}}</span>
                     </div>
                     <div class="form-group">
-                        <label for="Hours"></label>
-                        <input type="number" class="form-control">
+                        <label for="Hours">Hours:</label>
+                        <input type="number" v-model="hours" class="form-control">
+                        <span class="alert-danger" v-for="error in errors.hours">{{error}}</span>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" @click="$emit('close')" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" @click="$emit('close')" class="btn btn-default" data-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="submit" @click="logHours()" class="btn btn-primary">Save changes</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-</template>
 
+</template>
+<script>
+    export default {
+        props: ['issueId'],
+        data() {
+            return {
+                date: this.formattedTodayDate(),
+                hours: '',
+                errors: {date: [], hours: []}
+            }
+        },
+        methods: {
+            logHours() {
+                axios.post('/issue/log-hour', {
+                    date: this.date, hours: this.hours, id: this.issueId
+                }).then((response) => {
+                    this.$emit('close');
+                }).catch((error) => {
+                    this.errors = error.response.data;
+                });
+
+            },
+            formattedTodayDate() {
+                let today = new Date();
+                let dd = today.getDate();
+                let mm = today.getMonth() + 1; //January is 0!
+                let yyyy = today.getFullYear();
+
+                if (dd < 10) {
+                    dd = '0' + dd
+                }
+
+                if (mm < 10) {
+                    mm = '0' + mm
+                }
+                today = yyyy + '-' + mm + '-' + dd;
+                console.log(today);
+                return today;
+            }
+        },
+        mounted() {
+            console.log('Component mounted.')
+        }
+    }
+</script>

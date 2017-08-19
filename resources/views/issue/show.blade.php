@@ -7,7 +7,7 @@
 @section('content')
 
     <div id="issue" class="container">
-        <add-time v-show="showModal" @close="showModal = false"> </add-time>
+        <add-time issue-id="{{$issue->id}}" v-show="showModal" @close="showModal = false"> </add-time>
         <div class="row">
             <div class="container">
                 <div class="row">

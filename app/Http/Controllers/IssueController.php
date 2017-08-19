@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 use App\Issue;
 use App\IssueComment;
 use App\IssueStatus;
+use App\IssueTimeLogger;
 use App\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -90,6 +91,22 @@ class IssueController extends Controller
         return back();
     }
 
+
+    public function logHour(Request $request)
+    {
+        $this->validate($request, [
+            'id' => 'required|integer',
+            'hours' => 'required|integer',
+            'date' => 'date'
+        ]);
+
+        (new IssueTimeLogger())->logHour(
+            Auth::user()->id,
+            $request->input('id'),
+            $request->input('hours'),
+            $request->input('date')
+        );
+    }
 
     public function comment(Request $request)
     {

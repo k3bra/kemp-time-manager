@@ -897,8 +897,7 @@ var VueRouter = __webpack_require__(37);
 
 Vue.component('example', __webpack_require__(38));
 Vue.component('add-time', __webpack_require__(41));
-
-Vue.use(VueRouter);
+Vue.component('issues-list', __webpack_require__(54));
 
 var app = new Vue({
   el: '#app',
@@ -44505,7 +44504,7 @@ if (false) {
 var disposed = false
 var Component = __webpack_require__(8)(
   /* script */
-  null,
+  __webpack_require__(42),
   /* template */
   __webpack_require__(43),
   /* styles */
@@ -44539,7 +44538,90 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 42 */,
+/* 42 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['issueId'],
+    data: function data() {
+        return {
+            date: this.formattedTodayDate(),
+            hours: '',
+            errors: { date: [], hours: [] }
+        };
+    },
+
+    methods: {
+        logHours: function logHours() {
+            var _this = this;
+
+            axios.post('/issue/log-hour', {
+                date: this.date, hours: this.hours, id: this.issueId
+            }).then(function (response) {
+                _this.$emit('close');
+            }).catch(function (error) {
+                _this.errors = error.response.data;
+            });
+        },
+        formattedTodayDate: function formattedTodayDate() {
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth() + 1; //January is 0!
+            var yyyy = today.getFullYear();
+
+            if (dd < 10) {
+                dd = '0' + dd;
+            }
+
+            if (mm < 10) {
+                mm = '0' + mm;
+            }
+            today = yyyy + '-' + mm + '-' + dd;
+            console.log(today);
+            return today;
+        }
+    },
+    mounted: function mounted() {
+        console.log('Component mounted.');
+    }
+});
+
+/***/ }),
 /* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -44580,7 +44662,69 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("×")])]), _vm._v(" "), _c('h4', {
     staticClass: "modal-title"
-  }, [_vm._v("Modal title")])]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c('div', {
+  }, [_vm._v("Modal title")])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-body"
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    attrs: {
+      "for": "date"
+    }
+  }, [_vm._v("Date:")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.date),
+      expression: "date"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "date"
+    },
+    domProps: {
+      "value": (_vm.date)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.date = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _vm._l((_vm.errors.date), function(error) {
+    return _c('span', {
+      staticClass: "alert-danger"
+    }, [_vm._v(_vm._s(error))])
+  })], 2), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    attrs: {
+      "for": "Hours"
+    }
+  }, [_vm._v("Hours:")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.hours),
+      expression: "hours"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "number"
+    },
+    domProps: {
+      "value": (_vm.hours)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.hours = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _vm._l((_vm.errors.hours), function(error) {
+    return _c('span', {
+      staticClass: "alert-danger"
+    }, [_vm._v(_vm._s(error))])
+  })], 2)]), _vm._v(" "), _c('div', {
     staticClass: "modal-footer"
   }, [_c('button', {
     staticClass: "btn btn-default",
@@ -44593,39 +44737,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.$emit('close')
       }
     }
-  }, [_vm._v("Close")]), _vm._v(" "), _c('button', {
+  }, [_vm._v("\n                    Close\n                ")]), _vm._v(" "), _c('button', {
     staticClass: "btn btn-primary",
     attrs: {
-      "type": "button"
+      "type": "submit"
+    },
+    on: {
+      "click": function($event) {
+        _vm.logHours()
+      }
     }
   }, [_vm._v("Save changes")])])])])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "modal-body"
-  }, [_c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    attrs: {
-      "for": "date"
-    }
-  }, [_vm._v("Date")]), _vm._v(" "), _c('input', {
-    staticClass: "form-control",
-    attrs: {
-      "type": "date"
-    }
-  })]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    attrs: {
-      "for": "Hours"
-    }
-  }), _vm._v(" "), _c('input', {
-    staticClass: "form-control",
-    attrs: {
-      "type": "number"
-    }
-  })])])
-}]}
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -44639,6 +44762,272 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(8)(
+  /* script */
+  __webpack_require__(56),
+  /* template */
+  __webpack_require__(55),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/Users/k3bra/Documents/apps/kemp-time-manager/resources/assets/js/components/IssuesList.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] IssuesList.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-42be0246", Component.options)
+  } else {
+    hotAPI.reload("data-v-42be0246", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 55 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "container",
+    attrs: {
+      "id": "issues"
+    }
+  }, [_c('div', {
+    staticClass: "row"
+  }, [_c('section', {
+    staticClass: "content"
+  }, [_c('div', {
+    staticClass: "col-md-8 col-md-offset-2"
+  }, [_c('div', {
+    staticClass: "panel panel-default"
+  }, [_c('div', {
+    staticClass: "panel-body"
+  }, [_c('div', {
+    staticClass: "pull-right"
+  }, [_c('div', {
+    staticClass: "btn-group"
+  }, [_vm._l((_vm.issuesStatus), function(status) {
+    return _c('button', {
+      class: _vm.getButtonClass(status.id),
+      attrs: {
+        "type": "button"
+      }
+    }, [_vm._v("\n                                    " + _vm._s(status.name) + "\n                                ")])
+  }), _vm._v(" "), _c('button', {
+    staticClass: "btn btn-default btn-filter",
+    attrs: {
+      "type": "button",
+      "data-target": "all"
+    }
+  }, [_vm._v("All\n                                ")])], 2)]), _vm._v(" "), _c('div', {
+    staticClass: "table-container"
+  }, [_c('table', {
+    staticClass: "table table-filter"
+  }, [_c('tbody', _vm._l((_vm.issues), function(issue) {
+    return _c('tr', [_c('td', [_vm._v("\n                                        " + _vm._s(issue.project.name) + "\n                                    ")]), _vm._v(" "), _c('td', [_vm._v("\n                                        " + _vm._s(issue.assigned_to.name) + "\n                                    ")]), _vm._v(" "), _c('td', [_c('div', {
+      staticClass: "media"
+    }, [_c('a', {
+      staticClass: "pull-left",
+      attrs: {
+        "href": "#"
+      },
+      on: {
+        "click": function($event) {
+          _vm.test(issue.assigned_to.name)
+        }
+      }
+    }, [_c('img', {
+      staticClass: "media-photo",
+      attrs: {
+        "src": "https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg"
+      }
+    })]), _vm._v(" "), _c('div', {
+      staticClass: "media-body"
+    }, [_c('span', {
+      staticClass: "media-meta pull-right"
+    }, [_vm._v(_vm._s(issue.created_at))]), _vm._v(" "), _c('h4', {
+      staticClass: "title"
+    }, [_vm._v("\n                                                    " + _vm._s(issue.name) + "\n                                                ")]), _vm._v(" "), _c('p', {
+      staticClass: "summary"
+    }, [_vm._v(_vm._s(issue.description))])])])]), _vm._v(" "), _c('td', [_c('span', {
+      class: _vm.getColour(issue.status)
+    }, [_vm._v(" " + _vm._s(issue.status_desc.name) + " ")])]), _vm._v(" "), _c('td', [_c('a', {
+      attrs: {
+        "href": _vm.getIssueUrl(issue.id)
+      }
+    }, [_vm._v("Details")])])])
+  }))])])])])])])])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-42be0246", module.exports)
+  }
+}
+
+/***/ }),
+/* 56 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            issues: {},
+            issuesStatus: {},
+            url: '/issue/show/'
+        };
+    },
+
+    methods: {
+        getStatus: function getStatus() {
+
+            axios.get('/issue/show-all-status').then(function (response) {
+                this.issuesStatus = response.data;
+            });
+        },
+        getIssues: function getIssues() {
+            axios.get('/issue/show-all').then(function (response) {
+                this.issues = response.data;
+            });
+        },
+        getColour: function getColour(id) {
+            if (id == 1) {
+                return "open";
+            }
+            if (id == 2) {
+                return "on-hold";
+            }
+            if (id == 3) {
+                return "closed";
+            }
+            if (id == 4) {
+                return "in-progress";
+            }
+            return "";
+        },
+        getButtonClass: function getButtonClass(id) {
+
+            if (id == 1) {
+                return "btn btn-success btn-filter";
+            }
+            if (id == 2) {
+                return "btn btn-warning btn-filter";
+            }
+            if (id == 3) {
+                return "btn btn-danger btn-filter";
+            }
+            if (id == 4) {
+                return "btn btn-info btn-filter";
+            }
+
+            return "btn btn-default btn-filter";
+        },
+        getIssueUrl: function getIssueUrl(id) {
+            return "/issue/show/" + id;
+        }
+    },
+    mounted: function mounted() {
+        this.getIssues();
+        this.getStatus();
+    }
+});
 
 /***/ })
 /******/ ]);
