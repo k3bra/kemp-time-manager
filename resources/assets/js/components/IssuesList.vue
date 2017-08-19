@@ -1,5 +1,5 @@
 <template>
-    <div id="issues" class="container">
+    <div class="container">
         <div class="row">
             <section class="content">
                 <div class="col-md-8 col-md-offset-2">
@@ -72,14 +72,16 @@
         },
         methods: {
             getStatus() {
-
+                self = this;
                 axios.get('/issue/show-all-status').then(function (response) {
-                    this.issuesStatus = response.data;
+                    self.issuesStatus = response.data;
                 });
             },
             getIssues() {
+                self = this;
+
                 axios.get('/issue/show-all').then(function (response) {
-                    this.issues = response.data;
+                    self.issues = response.data;
                 });
             },
             getColour(id) {
@@ -118,9 +120,11 @@
                 return "/issue/show/" + id;
             }
         },
-        mounted() {
+        created() {
             this.getIssues();
             this.getStatus();
-        }
+        },
+        mounted() {
+                  }
     }
 </script>
