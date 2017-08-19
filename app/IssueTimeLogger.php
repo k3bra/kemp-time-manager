@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class IssueTimeLogger extends Model
 {
@@ -26,18 +27,21 @@ class IssueTimeLogger extends Model
                 'hours' => $hours
             ]);
         } else {
-            $addedHours = $hours + $data->hours;
+            $hours = $hours + $data->hours;
 
             $this->where('user_id', '=', $userId)
                 ->where('issue_id', '=', $issueId)
-                ->where('date', '=', $date)->update(['hours' => $addedHours]);
+                ->where('date', '=', $date)->update(['hours' => $hours]);
         }
 
+        return $hours;
     }
 
-    public function checkIfExistsByUniqueKey($user)
+    public function getTotalHoursById(int $id)
     {
-        $this->where();
+        $data = $this->select(DB::raw('SUM(hours) as total'))->where('issue_id', '=', $id)->first();
 
+        return isset($data->total) ? $data->total : 0;
     }
+
 }

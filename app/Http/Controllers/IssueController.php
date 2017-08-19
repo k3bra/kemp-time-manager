@@ -15,6 +15,7 @@ use App\IssueTimeLogger;
 use App\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class IssueController extends Controller
 {
@@ -91,6 +92,13 @@ class IssueController extends Controller
         return back();
     }
 
+    public function getLoggedHours(Request $request)
+    {
+
+        $issueLogger = new IssueTimeLogger();
+
+        return $issueLogger->getTotalHoursById($request->input('id'));
+    }
 
     public function logHour(Request $request)
     {
@@ -100,12 +108,14 @@ class IssueController extends Controller
             'date' => 'date'
         ]);
 
-        (new IssueTimeLogger())->logHour(
+        $currentNrHours = (new IssueTimeLogger())->logHour(
             Auth::user()->id,
             $request->input('id'),
             $request->input('hours'),
             $request->input('date')
         );
+
+        return $currentNrHours;
     }
 
     public function comment(Request $request)

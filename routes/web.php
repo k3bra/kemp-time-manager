@@ -34,4 +34,5 @@ Route::get('/issue', 'IssueController@index');
 Route::get('/issue/show/{id}', 'IssueController@show');
 Route::post('/issue/comment', 'IssueController@comment')->name('issue_comment');
 Route::post('/issue/log-hour', 'IssueController@logHour');
+Route::get('/issue/get-logged-hours', 'IssueController@getLoggedHours');
 

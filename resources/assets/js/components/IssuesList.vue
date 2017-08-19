@@ -125,6 +125,7 @@
             this.getStatus();
         },
         mounted() {
-                  }
+
+        }
     }
 </script>

@@ -7,7 +7,7 @@
 @section('content')
 
     <div id="issue" class="container">
-        <add-time issue-id="{{$issue->id}}" v-show="showModal" @close="showModal = false"> </add-time>
+        <add-time issue-id="{{$issue->id}}" v-show="showModal" @close="showModal = false"></add-time>
         <div class="row">
             <div class="container">
                 <div class="row">
@@ -44,9 +44,14 @@
                                             <tr>
                                                 <td>Estimated time:</td>
                                                 <td>{{$issue->estimated_time}} hours</td>
-                                            </tr>                                            <tr>
-                                                <td>Time spent: </td>
-                                                <td>12312 hours <button type="submit" @click="showModal = true" class="btn btn-warning">Add Time</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Time spent:</td>
+                                                <td> <issues-logged-time issue-id="{{$issue->id}}" estimated="{{$issue->estimated_time}}" > </issues-logged-time>
+                                                    <button type="submit" @click="showModal = true"
+                                                            class="btn btn-warning">Add Time
+                                                    </button>
+                                                </td>
                                             </tr>
                                             <tr>
 
@@ -110,13 +115,4 @@
             </div>
         </div>
     </div>
-@endsection
-
-
-@section('javascript')
-
-    <script type="text/javascript">
-
-    </script>
-
 @endsection

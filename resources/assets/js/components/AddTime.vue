@@ -42,12 +42,15 @@
         },
         methods: {
             logHours() {
+                let self = this;
                 axios.post('/issue/log-hour', {
                     date: this.date, hours: this.hours, id: this.issueId
                 }).then((response) => {
+                    let currentLoggedHours = response.data;
                     this.$emit('close');
+                    Event.$emit('hours', currentLoggedHours);
                 }).catch((error) => {
-                    this.errors = error.response.data;
+                    self.errors = error.response.data;
                 });
 
             },

@@ -8,7 +8,8 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
-var VueRouter = require('vue-router');
+
+window.Event = new Vue();
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -19,11 +20,12 @@ var VueRouter = require('vue-router');
 Vue.component('example', require('./components/Example.vue'));
 Vue.component('add-time', require('./components/AddTime.vue'));
 Vue.component('issues-list', require('./components/IssuesList.vue'));
+Vue.component('issues-logged-time', require('./components/IssueLoggedTime.vue'));
 
 
 const app = new Vue({
     el: '#app',
     data: {
-        showModal: false
-    }
+        showModal: false,
+    },
 });
