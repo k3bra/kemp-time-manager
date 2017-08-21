@@ -12,11 +12,15 @@
 
     @yield('css')
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/side-menu.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
+
                 <div class="navbar-header">
 
                     <!-- Collapsed Hamburger -->

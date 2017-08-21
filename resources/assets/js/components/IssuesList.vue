@@ -7,11 +7,11 @@
                         <div class="panel-body">
                             <div class="pull-right">
                                 <div class="btn-group">
-                                    <button v-for="status in issuesStatus" type="button"
+                                    <button @click="filterByStatus(status.id)"v-for="status in issuesStatus" type="button"
                                             v-bind:class="getButtonClass(status.id)">
                                         {{ status.name }}
                                     </button>
-                                    <button type="button" class="btn btn-default btn-filter" data-target="all">All
+                                    <button @click="filterByStatus(-1)" type="button" class="btn btn-default btn-filter" data-target="all">All
                                     </button>
                                 </div>
 
@@ -44,8 +44,7 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <span v-bind:class="getColour(issue.status)"> {{ issue.status_desc.name
-                                                }} </span>
+                                            <span v-bind:class="getColour(issue.status)"> {{ issue.status_desc.name}} </span>
                                         </td>
                                         <td><a :href="getIssueUrl(issue.id)">Details</a>
                                         </td>
@@ -71,6 +70,14 @@
             }
         },
         methods: {
+            filterByStatus(statusId) {
+                self = this;
+
+                axios.get('/issue/show-all', {params: {id: statusId}}).then(function (response) {
+                    self.issues = response.data;
+                });
+
+            },
             getStatus() {
                 self = this;
                 axios.get('/issue/show-all-status').then(function (response) {

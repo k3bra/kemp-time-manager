@@ -42357,7 +42357,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -42369,6 +42368,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
+        filterByStatus: function filterByStatus(statusId) {
+            self = this;
+
+            axios.get('/issue/show-all', { params: { id: statusId } }).then(function (response) {
+                self.issues = response.data;
+            });
+        },
         getStatus: function getStatus() {
             self = this;
             axios.get('/issue/show-all-status').then(function (response) {
@@ -42451,6 +42457,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       class: _vm.getButtonClass(status.id),
       attrs: {
         "type": "button"
+      },
+      on: {
+        "click": function($event) {
+          _vm.filterByStatus(status.id)
+        }
       }
     }, [_vm._v("\n                                    " + _vm._s(status.name) + "\n                                ")])
   }), _vm._v(" "), _c('button', {
@@ -42458,6 +42469,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "type": "button",
       "data-target": "all"
+    },
+    on: {
+      "click": function($event) {
+        _vm.filterByStatus(-1)
+      }
     }
   }, [_vm._v("All\n                                ")])], 2)]), _vm._v(" "), _c('div', {
     staticClass: "table-container"

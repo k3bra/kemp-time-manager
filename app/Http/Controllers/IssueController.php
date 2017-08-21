@@ -30,11 +30,15 @@ class IssueController extends Controller
     }
 
 
-    public function showAllIssues()
+    public function showAllIssues(Request $request)
     {
+        $select = Issue::with(['createdBy', 'assignedTo', 'project', 'statusDesc']);
 
-        return Issue::with(['createdBy', 'assignedTo', 'project', 'statusDesc'])->get();
+        if ($request->input('id') && $request->input('id') != -1) {
+            $select->where('status', '=', $request->input('id'));
+        }
 
+        return $select->get();
     }
 
     public function show($id)
