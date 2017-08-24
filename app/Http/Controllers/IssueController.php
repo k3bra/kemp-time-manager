@@ -15,7 +15,6 @@ use App\IssueTimeLogger;
 use App\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class IssueController extends Controller
 {
