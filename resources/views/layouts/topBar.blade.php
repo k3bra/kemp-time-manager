@@ -89,11 +89,6 @@
             <li><a href="{{ route('login') }}">Login</a></li>
             <li><a href="{{ route('register') }}">Register</a></li>
             @else
-            <li><a href="{{ url('/project') }}">See Projects</a></li>
-            <li><a href="{{ url('/project/create') }}">Create Project</a></li>
-            <li><a href="{{ url('/issue') }}">See Issue</a></li>
-            <li><a href="{{ url('/issue/create') }}">Create issue</a></li>
-
             <li class="dropdown navbar-user">
                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
                     <img src="{{asset('img/user-13.jpg')}}" alt="" />
