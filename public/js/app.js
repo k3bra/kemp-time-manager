@@ -42355,8 +42355,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -42437,13 +42435,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "container"
-  }, [_c('div', {
     staticClass: "row"
-  }, [_c('section', {
-    staticClass: "content"
-  }, [_c('div', {
-    staticClass: "col-md-8 col-md-offset-2"
+  }, [_c('section', [_c('div', {
+    staticClass: "col-md-12 "
   }, [_c('div', {
     staticClass: "panel panel-default"
   }, [_c('div', {
@@ -42463,7 +42457,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.filterByStatus(status.id)
         }
       }
-    }, [_vm._v("\n                                    " + _vm._s(status.name) + "\n                                ")])
+    }, [_vm._v("\n                                " + _vm._s(status.name) + "\n                            ")])
   }), _vm._v(" "), _c('button', {
     staticClass: "btn btn-default btn-filter",
     attrs: {
@@ -42475,12 +42469,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.filterByStatus(-1)
       }
     }
-  }, [_vm._v("All\n                                ")])], 2)]), _vm._v(" "), _c('div', {
+  }, [_vm._v("All\n                            ")])], 2)]), _vm._v(" "), _c('div', {
     staticClass: "table-container"
   }, [_c('table', {
     staticClass: "table table-filter"
   }, [_c('tbody', _vm._l((_vm.issues), function(issue) {
-    return _c('tr', [_c('td', [_vm._v("\n                                        " + _vm._s(issue.project.name) + "\n                                    ")]), _vm._v(" "), _c('td', [_vm._v("\n                                        " + _vm._s(issue.assigned_to.name) + "\n                                    ")]), _vm._v(" "), _c('td', [_c('div', {
+    return _c('tr', [_c('td', [_vm._v("\n                                    " + _vm._s(issue.project.name) + "\n                                ")]), _vm._v(" "), _c('td', [_vm._v("\n                                    " + _vm._s(issue.assigned_to.name) + "\n                                ")]), _vm._v(" "), _c('td', [_c('div', {
       staticClass: "media"
     }, [_c('a', {
       staticClass: "pull-left",
@@ -42503,7 +42497,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "media-meta pull-right"
     }, [_vm._v(_vm._s(issue.created_at))]), _vm._v(" "), _c('h4', {
       staticClass: "title"
-    }, [_vm._v("\n                                                    " + _vm._s(issue.name) + "\n                                                ")]), _vm._v(" "), _c('p', {
+    }, [_vm._v("\n                                                " + _vm._s(issue.name) + "\n                                            ")]), _vm._v(" "), _c('p', {
       staticClass: "summary"
     }, [_vm._v(_vm._s(issue.description))])])])]), _vm._v(" "), _c('td', [_c('span', {
       class: _vm.getColour(issue.status)
@@ -42512,7 +42506,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "href": _vm.getIssueUrl(issue.id)
       }
     }, [_vm._v("Details")])])])
-  }))])])])])])])])])
+  }))])])])])])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

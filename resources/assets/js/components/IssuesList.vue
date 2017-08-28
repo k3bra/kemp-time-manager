@@ -1,8 +1,7 @@
 <template>
-    <div class="container">
         <div class="row">
-            <section class="content">
-                <div class="col-md-8 col-md-offset-2">
+            <section>
+                <div class="col-md-12 ">
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="pull-right">
@@ -57,7 +56,6 @@
                 </div>
             </section>
         </div>
-    </div>
 </template>
 
 <script>
