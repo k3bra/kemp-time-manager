@@ -24,8 +24,10 @@
 
     <div id="page-container" class=" page-sidebar-fixed page-header-fixed">
         @include('layouts.topBar')
-        @include('layouts.sideBar')
 
+        @if(!Auth::guest())
+            @include('layouts.sideBar')
+        @endif
         <div id="content" class="content">
             <!-- begin breadcrumb -->
             <ol class="breadcrumb pull-right">
