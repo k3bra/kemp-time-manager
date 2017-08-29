@@ -5,7 +5,6 @@
 @endsection
 
 @section('content')
-
     <div id="issue" class="container">
         <add-time issue-id="{{$issue->id}}" v-show="showModal" @close="showModal = false"></add-time>
         <div class="row">
@@ -13,13 +12,13 @@
                 <div class="row">
                     <div class="col-md-8 col-md-offset-1">
 
-                        <div class="panel panel-info">
+                        <div class="panel">
                             <div class="panel-heading">
-                                <h1> {{$issue->name}}
+                           
+                                <h4 class="panel-title">{{$issue->name}}
                                     <small>({{$issue->project->name}})</small>
-                                </h1>
+                                </h4>
                             </div>
-
                             <div class="panel-body">
                                 <div class="row">
                                     <div class=" col-md-12">
@@ -47,7 +46,9 @@
                                             </tr>
                                             <tr>
                                                 <td>Time spent:</td>
-                                                <td> <issues-logged-time issue-id="{{$issue->id}}" estimated="{{$issue->estimated_time}}" > </issues-logged-time>
+                                                <td>
+                                                    <issues-logged-time issue-id="{{$issue->id}}"
+                                                                        estimated="{{$issue->estimated_time}}"></issues-logged-time>
 
                                                 </td>
                                                 <td>
@@ -76,7 +77,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
+                    <div class="col-md-8 col-md-offset-1">
                         @foreach($issue->comments as $comment)
                             @include('issue.comment')
                         @endforeach
@@ -84,7 +85,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
+                    <div class="col-md-8 col-md-offset-1">
 
 
                         @if ($errors->any())
