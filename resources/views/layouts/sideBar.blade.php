@@ -8,7 +8,7 @@
                     <a href="javascript:;"><img src="{{asset('img/user-13.jpg')}}" alt=""/></a>
                 </div>
                 <div class="info">
-                    Sean Ngu
+                    {{ Auth::user()->name }}
                     <small>Front end developer</small>
                 </div>
             </li>
