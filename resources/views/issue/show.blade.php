@@ -14,7 +14,7 @@
 
                         <div class="panel">
                             <div class="panel-heading">
-                           
+
                                 <h4 class="panel-title">{{$issue->name}}
                                     <small>({{$issue->project->name}})</small>
                                 </h4>
@@ -30,7 +30,11 @@
                                             </tr>
                                             <tr>
                                                 <td>Assigned to:</td>
-                                                <td colspan="2"><a href="">{{$issue->assignedTo->name}}</a></td>
+                                                <td colspan="2">
+                                                    <assign-user :user-id="{{$issue->assignedTo->id}}"
+                                                                 :issueId="{{$issue->id}}"
+                                                                 :users="{{json_encode($users)}}"></assign-user>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td>Created at:</td>
@@ -75,19 +79,15 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-md-8 col-md-offset-1">
                         @foreach($issue->comments as $comment)
                             @include('issue.comment')
                         @endforeach
-
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-8 col-md-offset-1">
-
-
                         @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>

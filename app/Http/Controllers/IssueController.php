@@ -13,6 +13,7 @@ use App\IssueComment;
 use App\IssueStatus;
 use App\IssueTimeLogger;
 use App\Project;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -44,7 +45,21 @@ class IssueController extends Controller
     {
 
         $issue = Issue::with(['createdBy', 'assignedTo', 'project', 'statusDesc'])->where('id', '=', $id)->first();
-        return view('issue.show', ['issue' => $issue]);
+
+        $users = User::all();
+
+        return view('issue.show', ['issue' => $issue, 'users' => $users]);
+    }
+
+    public function assign(Request $request)
+    {
+        $id = $request->input('id');
+        $this->validate($request, ['id' =>'required']);
+
+        $issue = Issue::find($id);
+        $issue->assigned_to = $id;
+
+        $issue->save();
     }
 
     public function index()
