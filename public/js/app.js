@@ -870,7 +870,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(10);
-module.exports = __webpack_require__(54);
+module.exports = __webpack_require__(57);
 
 
 /***/ }),
@@ -900,7 +900,7 @@ Vue.component('example', __webpack_require__(37));
 Vue.component('add-time', __webpack_require__(40));
 Vue.component('issues-list', __webpack_require__(43));
 Vue.component('issues-logged-time', __webpack_require__(46));
-Vue.component('assign-user', __webpack_require__(63));
+Vue.component('assign-user', __webpack_require__(54));
 
 var app = new Vue({
   el: '#app',
@@ -43001,28 +43001,14 @@ if (false) {
 
 /***/ }),
 /* 54 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 55 */,
-/* 56 */,
-/* 57 */,
-/* 58 */,
-/* 59 */,
-/* 60 */,
-/* 61 */,
-/* 62 */,
-/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(64),
+  __webpack_require__(55),
   /* template */
-  __webpack_require__(65),
+  __webpack_require__(56),
   /* styles */
   null,
   /* scopeId */
@@ -43054,7 +43040,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 64 */
+/* 55 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -43079,7 +43065,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         assignUser: function assignUser() {
-            axios.post('/issue/assign', { id: this.selected }).then(function (data) {
+            axios.post('/issue/assign', { issueId: this.issueId, userId: this.selected }).then(function (data) {
                 console.log(data);
             });
         }
@@ -43091,7 +43077,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 65 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -43136,6 +43122,12 @@ if (false) {
      require("vue-hot-reload-api").rerender("data-v-781fe4bf", module.exports)
   }
 }
+
+/***/ }),
+/* 57 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

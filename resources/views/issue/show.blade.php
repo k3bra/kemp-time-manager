@@ -32,7 +32,7 @@
                                                 <td>Assigned to:</td>
                                                 <td colspan="2">
                                                     <assign-user :user-id="{{$issue->assignedTo->id}}"
-                                                                 :issueId="{{$issue->id}}"
+                                                                 :issue-id="{{$issue->id}}"
                                                                  :users="{{json_encode($users)}}"></assign-user>
                                                 </td>
                                             </tr>

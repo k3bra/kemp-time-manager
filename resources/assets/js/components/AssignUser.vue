@@ -17,7 +17,7 @@
         },
         methods: {
             assignUser() {
-                axios.post('/issue/assign', {id: this.selected}).then(function(data) {
+                axios.post('/issue/assign', {issueId: this.issueId, userId: this.selected}).then(function(data) {
                     console.log(data);
                 });
             }

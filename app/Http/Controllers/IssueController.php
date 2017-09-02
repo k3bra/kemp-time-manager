@@ -48,7 +48,7 @@ class IssueController extends Controller
         $issue = Issue::with(['createdBy', 'assignedTo', 'project', 'statusDesc'])->where('id', '=', $id)->first();
         $users = User::all();
 
-        $followers = IssueFollower::with(['followedBy'])->where('issue_id', '=', $id)->get();
+        $followers = IssueFollower::with(['followedBy'])->where('issue_id', '=', $id)->limit(8)->get();
 
         $isFollowing = IssueFollower::where('issue_id', '=', $id)->where('user_id', '=', Auth::user()->id)->first();
 
@@ -65,9 +65,9 @@ class IssueController extends Controller
 
     public function follow($id)
     {
-         IssueFollower::create(['issue_id' => $id, 'user_id' => Auth::user()->id]);
+        IssueFollower::create(['issue_id' => $id, 'user_id' => Auth::user()->id]);
 
-         return back();
+        return back();
     }
 
     public function unFollow($id)
@@ -79,13 +79,19 @@ class IssueController extends Controller
 
     public function assign(Request $request)
     {
-        $id = $request->input('id');
-        $this->validate($request, ['id' => 'required']);
 
-        $issue = Issue::find($id);
-        $issue->assigned_to = $id;
+        $this->validate($request, ['issueId' => 'required', 'userId' => 'required']);
+
+        $userId = $request->input('userId');
+        $issueId = $request->input('issueId');
+
+        $issue = Issue::find($issueId);
+
+        $issue->assigned_to = $userId;
 
         $issue->save();
+
+
     }
 
     public function index()
