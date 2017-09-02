@@ -10,7 +10,7 @@
         <div class="row">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-8 col-md-offset-1">
+                    <div class="col-md-6">
 
                         <div class="panel">
                             <div class="panel-heading">
@@ -78,16 +78,42 @@
 
                         </div>
                     </div>
+
+                    <div class="col-md-4 ui-sortable">
+                        <!-- begin panel -->
+                        <div class="panel " data-sortable-id="index-4">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">Followers <span class="pull-right "><button>Follow</button></span></h4>
+                            </div>
+                            <ul class="registered-users-list clearfix">
+
+                                @foreach($followers as $follower)
+                                    <li>
+                                        <a href="javascript:;"><img src="{{asset('img/user-13.jpg')}}" alt=""></a>
+                                        <h4 class="username text-ellipsis">
+                                            {{ $follower->followedBy->name }}
+                                            <small>PT</small>
+                                        </h4>
+                                    </li>
+                                @endforeach
+
+                            </ul>
+                            <div class="panel-footer text-center">
+                                <a href="javascript:;" class="text-inverse">View All</a>
+                            </div>
+                        </div>
+                        <!-- end panel -->
+                    </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-8 col-md-offset-1">
+                    <div class="col-md-10">
                         @foreach($issue->comments as $comment)
                             @include('issue.comment')
                         @endforeach
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-8 col-md-offset-1">
+                    <div class="col-md-10">
                         @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>

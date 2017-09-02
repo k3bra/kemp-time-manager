@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 use App\Issue;
 use App\IssueComment;
+use App\IssueFollower;
 use App\IssueStatus;
 use App\IssueTimeLogger;
 use App\Project;
@@ -45,10 +46,11 @@ class IssueController extends Controller
     {
 
         $issue = Issue::with(['createdBy', 'assignedTo', 'project', 'statusDesc'])->where('id', '=', $id)->first();
-
         $users = User::all();
 
-        return view('issue.show', ['issue' => $issue, 'users' => $users]);
+        $followers = IssueFollower::with(['followedBy'])->where('issue_id', '=', $id)->get();
+
+        return view('issue.show', ['issue' => $issue, 'users' => $users, 'followers' => $followers]);
     }
 
     public function assign(Request $request)

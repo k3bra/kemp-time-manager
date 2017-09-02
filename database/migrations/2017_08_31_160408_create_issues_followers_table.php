@@ -12,6 +12,7 @@ class CreateIssuesFollowersTable extends Migration {
 			$table->timestamps();
 			$table->integer('issue_id')->unsigned();
 			$table->integer('user_id')->unsigned();
+            $table->unique(['issue_id', 'user_id']);
 		});
 	}
 
