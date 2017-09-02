@@ -50,13 +50,37 @@ class IssueController extends Controller
 
         $followers = IssueFollower::with(['followedBy'])->where('issue_id', '=', $id)->get();
 
-        return view('issue.show', ['issue' => $issue, 'users' => $users, 'followers' => $followers]);
+        $isFollowing = IssueFollower::where('issue_id', '=', $id)->where('user_id', '=', Auth::user()->id)->first();
+
+        $url = !$isFollowing ? '/issue/follow/' . $id : '/issue/un-follow/' . $id;
+
+        return view('issue.show', [
+            'issue' => $issue,
+            'users' => $users,
+            'followers' => $followers,
+            'isFollowing' => $isFollowing,
+            'followUrl' => $url
+        ]);
+    }
+
+    public function follow($id)
+    {
+         IssueFollower::create(['issue_id' => $id, 'user_id' => Auth::user()->id]);
+
+         return back();
+    }
+
+    public function unFollow($id)
+    {
+        IssueFollower::where('issue_id', '=', $id)->where('user_id', '=', Auth::user()->id)->delete();
+
+        return back();
     }
 
     public function assign(Request $request)
     {
         $id = $request->input('id');
-        $this->validate($request, ['id' =>'required']);
+        $this->validate($request, ['id' => 'required']);
 
         $issue = Issue::find($id);
         $issue->assigned_to = $id;

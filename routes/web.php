@@ -37,3 +37,6 @@ Route::post('/issue/log-hour', 'IssueController@logHour');
 Route::get('/issue/get-logged-hours', 'IssueController@getLoggedHours');
 Route::post('/issue/assign', 'IssueController@assign');
 
+Route::post('/issue/follow/{id}', 'IssueController@follow');
+Route::post('/issue/un-follow/{id}', 'IssueController@unFollow');
+

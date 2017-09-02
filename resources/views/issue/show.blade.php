@@ -83,7 +83,12 @@
                         <!-- begin panel -->
                         <div class="panel " data-sortable-id="index-4">
                             <div class="panel-heading">
-                                <h4 class="panel-title">Followers <span class="pull-right "><button>Follow</button></span></h4>
+                                <h4 class="panel-title">Followers ({{ count($followers) }})
+                                    <span class="pull-right ">
+                                            <form action="{{ $followUrl }}" method="POST">
+                                            {{csrf_field()}}
+                                            <input type="submit" class="button" value="{{ $isFollowing ? 'Following' : 'Follow'  }}">
+                                    </form> </span></h4>
                             </div>
                             <ul class="registered-users-list clearfix">
 
