@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Gonçalo Cunha
- * Date: 10/08/2017
- * Time: 09:24
- */
 
 namespace App\Http\Controllers;
 
@@ -42,25 +36,24 @@ class IssueController extends Controller
         return $select->get();
     }
 
-    public function show($id)
+    public function show($id, IssueFollower $issueFollower, Issue $issue)
     {
 
-        $issue = Issue::with(['createdBy', 'assignedTo', 'project', 'statusDesc'])->where('id', '=', $id)->first();
-        $users = User::all();
-
-        $followers = IssueFollower::with(['followedBy'])->where('issue_id', '=', $id)->limit(8)->get();
-
-        $isFollowing = IssueFollower::where('issue_id', '=', $id)->where('user_id', '=', Auth::user()->id)->first();
-
-        $url = !$isFollowing ? '/issue/follow/' . $id : '/issue/un-follow/' . $id;
+        $isFollowing = $issueFollower->hasUserFollowing($id, Auth::user()->id);
 
         return view('issue.show', [
-            'issue' => $issue,
-            'users' => $users,
-            'followers' => $followers,
+            'issue' => $issue->issueInfo($id),
+            'users' => User::all(),
+            'followers' => $issueFollower->getFollowersById($id),
             'isFollowing' => $isFollowing,
-            'followUrl' => $url
+            'followUrl' => $this->getFollowUrl($isFollowing, $id)
         ]);
+    }
+
+    private function getFollowUrl($isFollowing, $id)
+    {
+        return !$isFollowing ? '/issue/follow/' . $id : '/issue/un-follow/' . $id;
+
     }
 
     public function follow($id)

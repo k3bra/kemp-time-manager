@@ -13,25 +13,36 @@ class Issue extends Model
 
     public $guarded = [];
 
-    public function createdBy() {
+    public function createdBy()
+    {
 
         return $this->belongsTo('App\User', 'created_by');
     }
 
-    public function assignedTo() {
+    public function assignedTo()
+    {
         return $this->belongsTo('App\User', 'assigned_to');
     }
 
-    public function statusDesc() {
+    public function statusDesc()
+    {
         return $this->belongsTo(IssueStatus::class, 'status');
     }
 
-    public function project() {
+    public function project()
+    {
         return $this->belongsTo(Project::class, 'project_id');
     }
 
-    public function comments() {
+    public function comments()
+    {
 
         return $this->hasMany(IssueComment::class, 'issue_id');
+    }
+
+
+    public function issueInfo($id)
+    {
+        return $this->with(['createdBy', 'assignedTo', 'project', 'statusDesc'])->where('id', '=', $id)->first();
     }
 }

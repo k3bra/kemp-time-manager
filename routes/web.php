@@ -39,4 +39,5 @@ Route::post('/issue/assign', 'IssueController@assign');
 
 Route::post('/issue/follow/{id}', 'IssueController@follow');
 Route::post('/issue/un-follow/{id}', 'IssueController@unFollow');
+Route::get('/user/notifications', 'UserNotificationController@all');
 
