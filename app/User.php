@@ -27,7 +27,13 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function projects() {
+    public function projects()
+    {
         return $this->hasMany('App\Project', 'created_by', 'id');
+    }
+
+    public function notifications()
+    {
+        return $this->hasMany(UserNotification::class, 'user_id', 'id');
     }
 }
