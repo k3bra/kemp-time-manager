@@ -43,6 +43,7 @@ class IssueController extends Controller
 
         return view('issue.show', [
             'issue' => $issue->issueInfo($id),
+            'status' => IssueStatus::all(),
             'users' => User::all(),
             'followers' => $issueFollower->getFollowersById($id),
             'isFollowing' => $isFollowing,
@@ -84,6 +85,17 @@ class IssueController extends Controller
 
         $issue->save();
 
+    }
+
+    public function updateStatus(Request $request)
+    {
+        $this->validate($request, ['issueId' => 'required', 'statusId' => 'required']);
+        $statusId= $request->input('statusId');
+        $issueId = $request->input('issueId');
+        $issue = Issue::find($issueId);
+        $issue->status = $statusId;
+
+        $issue->save();
 
     }
 

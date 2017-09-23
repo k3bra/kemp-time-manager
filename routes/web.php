@@ -36,6 +36,7 @@ Route::post('/issue/comment', 'IssueController@comment')->name('issue_comment');
 Route::post('/issue/log-hour', 'IssueController@logHour');
 Route::get('/issue/get-logged-hours', 'IssueController@getLoggedHours');
 Route::post('/issue/assign', 'IssueController@assign');
+Route::post('/issue/change-status', 'IssueController@updateStatus');
 
 Route::post('/issue/follow/{id}', 'IssueController@follow');
 Route::post('/issue/un-follow/{id}', 'IssueController@unFollow');

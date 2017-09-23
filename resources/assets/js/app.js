@@ -22,6 +22,7 @@ Vue.component('add-time', require('./components/AddTime.vue'));
 Vue.component('issues-list', require('./components/IssuesList.vue'));
 Vue.component('issues-logged-time', require('./components/IssueLoggedTime.vue'));
 Vue.component('assign-user', require('./components/AssignUser.vue'));
+Vue.component('change-status', require('./components/ChangeStatus.vue'));
 
 
 const app = new Vue({

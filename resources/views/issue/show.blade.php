@@ -37,6 +37,13 @@
                                                 </td>
                                             </tr>
                                             <tr>
+                                                <td>Status</td>
+                                                <td colspan="2">
+                                                    <change-status :status-id="{{$issue->statusDesc->id}}" :issue-id="{{$issue->id}}" :status="{{json_encode($status)}}">
+                                                    </change-status>
+                                                </td>
+                                            </tr>
+                                            <tr>
                                                 <td>Created at:</td>
                                                 <td colspan="2">{{$issue->created_at}}</td>
                                             </tr>
