@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AssignUserIssueRequest;
+use App\Http\Requests\IssueStoreRequest;
+use App\Http\Requests\LogIssueHourRequest;
+use App\Http\Requests\UpdateIssueStatusRequest;
 use App\Issue;
 use App\IssueComment;
 use App\IssueFollower;
@@ -11,6 +15,7 @@ use App\Project;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PhpParser\Node\Expr\Assign;
 
 class IssueController extends Controller
 {
@@ -71,32 +76,14 @@ class IssueController extends Controller
         return back();
     }
 
-    public function assign(Request $request)
+    public function assign(AssignUserIssueRequest $request)
     {
-
-        $this->validate($request, ['issueId' => 'required', 'userId' => 'required']);
-
-        $userId = $request->input('userId');
-        $issueId = $request->input('issueId');
-
-        $issue = Issue::find($issueId);
-
-        $issue->assigned_to = $userId;
-
-        $issue->save();
-
+        $request->assignUser();
     }
 
-    public function updateStatus(Request $request)
+    public function updateStatus(UpdateIssueStatusRequest $updateIssueStatusRequest)
     {
-        $this->validate($request, ['issueId' => 'required', 'statusId' => 'required']);
-        $statusId= $request->input('statusId');
-        $issueId = $request->input('issueId');
-        $issue = Issue::find($issueId);
-        $issue->status = $statusId;
-
-        $issue->save();
-
+        $updateIssueStatusRequest->update();
     }
 
     public function index()
@@ -120,29 +107,10 @@ class IssueController extends Controller
         return IssueStatus::all();
     }
 
-    public function store(Request $request)
+    public function store(IssueStoreRequest $request)
     {
 
-        $request->input('name');
-
-        $this->validate($request,
-            [
-                'name' => 'required|unique:issues',
-                'estimated' => 'required|integer',
-                'description' => 'required',
-                'status' => 'required',
-                'project' => 'required',
-            ]);
-
-        Issue::create([
-            'name' => $request->input('name'),
-            'created_by' => Auth::user()->id,
-            'description' => $request->input('description'),
-            'estimated_time' => $request->input('estimated'),
-            'project_id' => $request->input('project'),
-            'status' => $request->input('status'),
-            'assigned_to' => Auth::user()->id,
-        ]);
+        $request->store();
 
         return back();
     }
@@ -155,22 +123,9 @@ class IssueController extends Controller
         return $issueLogger->getTotalHoursById($request->input('id'));
     }
 
-    public function logHour(Request $request)
+    public function logHour(LogIssueHourRequest $request)
     {
-        $this->validate($request, [
-            'id' => 'required|integer',
-            'hours' => 'required|integer',
-            'date' => 'date'
-        ]);
-
-        $currentNrHours = (new IssueTimeLogger())->logHour(
-            Auth::user()->id,
-            $request->input('id'),
-            $request->input('hours'),
-            $request->input('date')
-        );
-
-        return $currentNrHours;
+        return $request->logHour(Auth::id());
     }
 
     public function comment(Request $request)
