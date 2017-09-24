@@ -33,4 +33,5 @@ class IssueFollower extends Model
     {
         return $this->with(['followedBy'])->where('issue_id', '=', $id)->limit(8)->get();
     }
+
 }

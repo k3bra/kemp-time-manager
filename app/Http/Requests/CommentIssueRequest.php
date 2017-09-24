@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Services\IssueUserNotification;
 use Illuminate\Foundation\Http\FormRequest;
 use App\IssueComment;
 
@@ -33,10 +34,18 @@ class CommentIssueRequest extends FormRequest
     public function comment()
     {
 
-        IssueComment::create([
+        $issueComment = new IssueComment();
+
+        $issueComment->create([
             'body' => $this->input('body'),
             'issue_id' => $this->input('id'),
             'user_id' => auth()->user()->id,
         ]);
+
+
+        (new IssueUserNotification(IssueUserNotification::COMMENT_TYPE, $this->input('id')))->notify();
+
     }
+
+
 }
