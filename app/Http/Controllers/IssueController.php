@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AssignUserIssueRequest;
+use App\Http\Requests\CommentIssueRequest;
 use App\Http\Requests\IssueStoreRequest;
 use App\Http\Requests\LogIssueHourRequest;
 use App\Http\Requests\UpdateIssueStatusRequest;
@@ -128,20 +129,10 @@ class IssueController extends Controller
         return $request->logHour(Auth::id());
     }
 
-    public function comment(Request $request)
+    public function comment(CommentIssueRequest $request)
     {
 
-        $this->validate($request, [
-                'body' => 'required',
-                'id' => 'required'
-            ]
-        );
-
-        IssueComment::create([
-            'body' => $request->input('body'),
-            'issue_id' => $request->input('id'),
-            'user_id' => Auth::user()->id,
-        ]);
+        $request->comment();
 
         return back();
     }
