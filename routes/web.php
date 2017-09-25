@@ -40,5 +40,5 @@ Route::post('/issue/change-status', 'IssueController@updateStatus');
 
 Route::post('/issue/follow/{id}', 'IssueController@follow');
 Route::post('/issue/un-follow/{id}', 'IssueController@unFollow');
-Route::get('/user/notifications', 'UserNotificationController@all');
+Route::get('/user/notifications', 'UserNotificationController@getUserNotifications');
 

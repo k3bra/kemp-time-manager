@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class UserNotificationController extends Controller
 {
+
     /**
      * ProjectController constructor.
      */
@@ -19,15 +20,9 @@ class UserNotificationController extends Controller
     }
 
 
-    public function all()
+    public function getUserNotifications()
     {
-        return UserNotification::with(['users'])->where('user_id', '=', Auth::user()->id)->get();
-    }
-
-    public function userNotSeen()
-    {
-        return UserNotification::with(['users'])->where('user_id', '=', Auth::user()->id)
-            ->where('seen', '=', 0)->get();
+        return (new UserNotification())->getNotSeenUserNotifications(auth()->user()->id);
     }
 
 }

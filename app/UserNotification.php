@@ -17,4 +17,10 @@ class UserNotification extends Model
     {
         return $this->belongsTo('App\User', 'user_id');
     }
+
+    public function getNotSeenUserNotifications(int $userId)
+    {
+        return $this->where('user_id', '=', $userId)
+            ->where('seen', '=', 0)->get();
+    }
 }
