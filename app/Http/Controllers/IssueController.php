@@ -21,7 +21,6 @@ use PhpParser\Node\Expr\Assign;
 class IssueController extends Controller
 {
 
-
     /**
      * ProjectController constructor.
      */

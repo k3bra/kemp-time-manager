@@ -6,7 +6,7 @@
                         <div class="panel-body">
                             <div class="pull-right">
                                 <div class="btn-group">
-                                    <button @click="filterByStatus(status.id)"v-for="status in issuesStatus" type="button"
+                                    <button @click="filterByStatus(status.id)" v-for="status in issuesStatus" type="button"
                                             v-bind:class="getButtonClass(status.id)">
                                         {{ status.name }}
                                     </button>
