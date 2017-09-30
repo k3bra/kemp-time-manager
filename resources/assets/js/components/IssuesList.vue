@@ -125,12 +125,9 @@
                 return "/issue/show/" + id;
             }
         },
-        created() {
+        mounted() {
             this.getIssues();
             this.getStatus();
-        },
-        mounted() {
-
         }
     }
 </script>

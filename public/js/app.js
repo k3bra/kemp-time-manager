@@ -870,7 +870,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(10);
-module.exports = __webpack_require__(60);
+module.exports = __webpack_require__(63);
 
 
 /***/ }),
@@ -902,7 +902,7 @@ Vue.component('issues-list', __webpack_require__(43));
 Vue.component('issues-logged-time', __webpack_require__(46));
 Vue.component('assign-user', __webpack_require__(54));
 Vue.component('change-status', __webpack_require__(57));
-Vue.component('notifications', __webpack_require__(69));
+Vue.component('notifications', __webpack_require__(60));
 
 var app = new Vue({
   el: '#app',
@@ -42425,11 +42425,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return "/issue/show/" + id;
         }
     },
-    created: function created() {
+    mounted: function mounted() {
         this.getIssues();
         this.getStatus();
-    },
-    mounted: function mounted() {}
+    }
 });
 
 /***/ }),
@@ -43251,28 +43250,14 @@ if (false) {
 
 /***/ }),
 /* 60 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 61 */,
-/* 62 */,
-/* 63 */,
-/* 64 */,
-/* 65 */,
-/* 66 */,
-/* 67 */,
-/* 68 */,
-/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(70),
+  __webpack_require__(61),
   /* template */
-  __webpack_require__(71),
+  __webpack_require__(62),
   /* styles */
   null,
   /* scopeId */
@@ -43304,7 +43289,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 70 */
+/* 61 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -43345,7 +43330,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 71 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -43390,6 +43375,12 @@ if (false) {
      require("vue-hot-reload-api").rerender("data-v-3fc00693", module.exports)
   }
 }
+
+/***/ }),
+/* 63 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);
