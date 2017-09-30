@@ -24,7 +24,7 @@
             }
         },
         mounted() {
-            self = this;
+            let self = this;
             axios.get('/user/notifications').then(function(data) {
                 self.notifications = data.data;
 

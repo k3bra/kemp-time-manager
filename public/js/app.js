@@ -43320,7 +43320,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     mounted: function mounted() {
-        self = this;
+        var self = this;
         axios.get('/user/notifications').then(function (data) {
             self.notifications = data.data;
 

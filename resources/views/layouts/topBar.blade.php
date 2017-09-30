@@ -31,9 +31,7 @@
                     <i class="fa fa-bell-o"></i>
                     <span class="Folabel">5</span>
                 </a>
-                <notifications>
-
-                </notifications>
+                <notifications> </notifications>
             </li>
             @if (Auth::guest())
             <li><a href="{{ route('login') }}">Login</a></li>
