@@ -23,4 +23,9 @@ class UserNotification extends Model
         return $this->where('user_id', '=', $userId)
             ->where('seen', '=', 0)->get();
     }
+
+    public function getUserNotifications(int $userId) {
+
+        return $this->where('user_id', '=', $userId)->get();
+    }
 }

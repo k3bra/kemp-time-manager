@@ -25,4 +25,13 @@ class UserNotificationController extends Controller
         return (new UserNotification())->getNotSeenUserNotifications(auth()->user()->id);
     }
 
+    public function showUserNotifications()
+    {
+        $notifications = (new UserNotification())->getUserNotifications(auth()->user()->id);
+
+        return view('notification.index', [
+            'notifications' => $notifications
+        ]);
+    }
+
 }

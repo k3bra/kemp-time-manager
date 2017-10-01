@@ -11,7 +11,7 @@
             </a>
         </li>
         <li class="dropdown-footer text-center">
-            <a href="javascript:;">View more</a>
+            <a href="/user/all-notifications">View more</a>
         </li>
     </ul>
 </template>
